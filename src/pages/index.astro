@@ -15,6 +15,8 @@ const whatsappMessage = encodeURIComponent(
 const hashtag = "#Mis15Catalina05";
 const mapUrl = "https://maps.app.goo.gl/9iTSachUDapF7PwX8";
 const mapLabel = "La Gran Mansión Centro de Eventos — Vía El Placer, Santa Elena";
+const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL || "";
+const supabasePublishableKey = import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY || "";
 ---
 
 <!doctype html>
@@ -32,7 +34,7 @@ const mapLabel = "La Gran Mansión Centro de Eventos — Vía El Placer, Santa E
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Parisienne&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <main>
+    <main data-supabase-url={supabaseUrl} data-supabase-key={supabasePublishableKey} data-whatsapp-phone={whatsappPhone}>
 
       <!-- HERO — blush editorial, editorial cálido sin ambient stars, hard-offset shadow vibe -->
       <section class="cover" aria-labelledby="hero-title">
@@ -157,6 +159,7 @@ const mapLabel = "La Gran Mansión Centro de Eventos — Vía El Placer, Santa E
         <p class="eyebrow">Confirma tu asistencia</p>
         <h2 id="rsvp-title">¿Nos<br /><em>acompañas?</em></h2>
         <p>Por favor confirma antes del <strong>15 de septiembre de 2026</strong>.</p>
+        <p class="guest-greeting" data-guest-greeting aria-live="polite"></p>
         <div class="actions">
           <a
             class="button button-light rsvp-link"
@@ -199,6 +202,43 @@ const mapLabel = "La Gran Mansión Centro de Eventos — Vía El Placer, Santa E
     </button>
 
     <script is:inline>
+      // Identidad RSVP — consulta únicamente el RPC público de Novi.
+      (() => {
+        const config = document.querySelector('main')?.dataset;
+        const supabaseUrl = config?.supabaseUrl || '';
+        const publishableKey = config?.supabaseKey || '';
+        const whatsappPhone = config?.whatsappPhone || '';
+        const token = new URLSearchParams(window.location.search).get('invitacion')?.trim();
+        if (!supabaseUrl || !publishableKey || !token) return;
+
+        const greeting = document.querySelector('[data-guest-greeting]');
+        const rsvpLinks = document.querySelectorAll('.rsvp-link');
+        const baseMessage = 'Confirmo mi asistencia a los XV años de Catalina Valencia Gutierrez. ¡Gracias por la invitación!';
+        const rpcUrl = `${supabaseUrl.replace(/\/$/, '')}/rest/v1/rpc/get_guest_rsvp`;
+
+        fetch(rpcUrl, {
+          method: 'POST',
+          headers: {
+            apikey: publishableKey,
+            Authorization: `Bearer ${publishableKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ p_token: token }),
+        })
+          .then((response) => response.ok ? response.json() : null)
+          .then((rows) => {
+            const guest = Array.isArray(rows) ? rows[0] : rows;
+            if (!guest?.guest_name) return;
+            const name = String(guest.guest_name).trim();
+            if (greeting) greeting.textContent = `Hola, ${name}. Será un honor contar contigo.`;
+            const message = encodeURIComponent(`Hola, soy ${name}. ${baseMessage}`);
+            rsvpLinks.forEach((link) => link.setAttribute('href', `https://wa.me/${whatsappPhone}?text=${message}`));
+          })
+          .catch(() => {
+            // La invitación y el RSVP genérico siguen disponibles si la consulta falla.
+          });
+      })();
+
       // Countdown activo — Sábado 10 de octubre de 2026 · 19:00 America/Bogota
       const countdown = document.querySelector('[data-countdown]');
       if (countdown && countdown.dataset.target) {
