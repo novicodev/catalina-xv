@@ -174,22 +174,6 @@ const mapLabel = "La Gran Mansión Centro de Eventos — Vía El Placer, Santa E
         </div>
       </section>
 
-      <!-- GALERÍA — placeholder elegante (sin fotos inventadas) -->
-      <section class="section gallery" data-reveal>
-        <p class="eyebrow">Recuerdos</p>
-        <h2 class="gallery-heading">Momentos que<br /><em>nos unen.</em></h2>
-        <div class="gallery-track" role="list">
-          {
-            [0, 1, 2, 3, 4, 5].map((i) => (
-              <div class="gallery-item is-placeholder" role="listitem" aria-hidden="true" data-symbol={["♡", "✦", "◇", "✿", "❋", "✧"][i]}>
-                <span class="gallery-placeholder-text">Foto {i + 1}</span>
-              </div>
-            ))
-          }
-        </div>
-        <p class="gallery-note">Galería reservada — agrega tus fotos favoritas en <code>/public/photos/</code> cuando estén listas.</p>
-      </section>
-
       <!-- MÚSICA CARD -->
       <div class="music-card" aria-label="Control de música" data-reveal>
         <span class="music-note" aria-hidden="true">♫</span>
@@ -335,7 +319,6 @@ const mapLabel = "La Gran Mansión Centro de Eventos — Vía El Placer, Santa E
   .section.venue{background:var(--cream)}
   .section.details{background:var(--rose-pale)}
   .section.rsvp{background:var(--ink);color:#f5eee9}
-  .section.gallery{background:var(--cream)}
 
   /* STORY */
   .story{max-width:760px;margin:0 auto;text-align:center}
@@ -420,19 +403,6 @@ const mapLabel = "La Gran Mansión Centro de Eventos — Vía El Placer, Santa E
   .music-hint{color:rgba(245,238,233,.72);font-size:.78rem}
   .music-hint strong{color:rgba(245,238,233,.95);font-weight:500}
 
-  /* GALLERY */
-  .gallery{max-width:980px;margin:0 auto;text-align:center}
-  .gallery .eyebrow{color:var(--rose-malva)}
-  .gallery-heading{margin:.4rem 0 1.2rem;font:clamp(2rem,5vw,2.8rem)/1.05 var(--serif);font-weight:400;letter-spacing:-.02em}
-  .gallery-heading em{font-style:italic;color:var(--rose-malva);font-weight:400}
-  .gallery-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 4px 12px;scrollbar-width:none}
-  .gallery-track::-webkit-scrollbar{display:none}
-  .gallery-item{flex:0 0 280px;aspect-ratio:1;scroll-snap-align:center;display:grid;place-items:center;background:#fff;border:1px solid rgba(184,127,141,.18);box-shadow:8px 8px 0 var(--shadow-hard);position:relative}
-  .gallery-item.is-placeholder{cursor:default}
-  .gallery-placeholder-text{font:.72rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:rgba(184,127,141,.85)}
-  .gallery-note{margin:1rem auto 0;max-width:36rem;color:#8a6a6e;font-size:.78rem}
-  .gallery-note code{background:#fff;border:1px solid rgba(229,195,154,.5);padding:.15rem .4rem;border-radius:6px;font-size:.75rem}
-
   /* MUSIC CARD */
   .music-card{display:flex;align-items:center;gap:18px;max-width:520px;margin:3rem auto 0;padding:20px;text-align:left;border:1px solid rgba(229,195,154,.6);background:#fff8f2;box-shadow:8px 8px 0 var(--shadow-hard);transform:rotate(-.3deg)}
   .music-note{color:var(--rose-malva);font-size:2rem}
@@ -483,7 +453,6 @@ const mapLabel = "La Gran Mansión Centro de Eventos — Vía El Placer, Santa E
     .venue-copy address{font-size:.95rem}
     .detail-grid{grid-template-columns:1fr;gap:12px}
     .detail-grid article{min-height:auto;box-shadow:8px 8px 0 var(--shadow-hard);transform:none}
-    .gallery-item{flex:0 0 72vw}
     .music-card{transform:none;box-shadow:6px 6px 0 var(--shadow-hard)}
   }
   @media(prefers-reduced-motion:reduce){
