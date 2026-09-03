@@ -173,7 +173,6 @@ const supabasePublishableKey = import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY |
         </div>
         <div class="rsvp-meta">
           <p class="hashtag-inline">{hashtag}</p>
-          <p class="music-hint"><span aria-hidden="true">♫</span> Canción sugerida: <strong>Once Upon a Dream</strong> — compártela si te inspira</p>
         </div>
       </section>
 
@@ -436,13 +435,11 @@ const supabasePublishableKey = import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY |
   .rsvp h2{margin:.4rem 0 .8rem;font:clamp(2.4rem,6vw,3.4rem)/1 var(--serif);font-weight:400}
   .rsvp h2 em{font-style:italic;color:var(--champagne);font-weight:400}
   .rsvp p{color:rgba(245,238,233,.92)}
-  .guest-greeting{min-height:3.5rem;margin:1.5rem auto 1.25rem;padding:1rem 1.25rem;border:1px solid rgba(229,195,154,.55);background:rgba(229,195,154,.12);color:#fff!important;font:500 clamp(1.25rem,4vw,1.75rem)/1.25 var(--serif);letter-spacing:.01em;text-wrap:balance}
+  .guest-greeting{min-height:5rem;max-width:520px;margin:1.6rem auto 1.35rem;padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:center;border:1px solid rgba(229,195,154,.8);background:#fff8f2;box-shadow:10px 10px 0 var(--shadow-hard);color:var(--ink)!important;font:500 clamp(1.35rem,4.5vw,2rem)/1.2 var(--serif);letter-spacing:.01em;text-wrap:balance}
   .actions{margin-top:1.6rem}
   .phone{margin:.8rem 0 0;color:var(--champagne);font-size:.82rem;letter-spacing:.08em}
   .rsvp-meta{margin-top:2rem;display:grid;gap:.5rem}
   .hashtag-inline{color:var(--champagne);font:italic 1.05rem var(--serif)}
-  .music-hint{color:rgba(245,238,233,.72);font-size:.78rem}
-  .music-hint strong{color:rgba(245,238,233,.95);font-weight:500}
 
   /* MUSIC CARD */
   .music-card{display:flex;align-items:center;gap:18px;max-width:520px;margin:3rem auto 0;padding:20px;text-align:left;border:1px solid rgba(229,195,154,.6);background:#fff8f2;box-shadow:8px 8px 0 var(--shadow-hard);transform:rotate(-.3deg)}
