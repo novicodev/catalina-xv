@@ -1,0 +1,497 @@
+---
+// Datos Catalina Valencia Gutierrez — XV
+// Fecha confirmada: Sábado 10 de octubre de 2026 · 7:00 pm America/Bogota (-05:00)
+// Deadline RSVP: 15 septiembre 2026
+const eventDate = "2026-10-10T19:00:00-05:00";
+const isoDate = "2026-10-10";
+const shortDate = "10 · 10 · 2026";
+const longDate = "Sábado 10 de octubre de 2026";
+const eventDay = "Sábado";
+const eventTime = "7:00 pm";
+const whatsappPhone = "573154383873";
+const whatsappMessage = encodeURIComponent(
+  "Hola, soy [Tu nombre]. Confirmo mi asistencia a los XV años de Catalina Valencia Gutierrez. ¡Gracias por la invitación!"
+);
+const hashtag = "#Mis15Catalina05";
+const mapUrl = "https://maps.app.goo.gl/9iTSachUDapF7PwX8";
+const mapLabel = "La Gran Mansión Centro de Eventos — Vía El Placer, Santa Elena";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#b87f8d" />
+    <meta name="description" content="Invitación a los XV de Catalina Valencia Gutierrez — La Gran Mansión, Santa Elena" />
+    <meta property="og:title" content="Mis XV · Catalina Valencia Gutierrez" />
+    <meta property="og:description" content="Vía El Placer – Santa Elena · La Gran Mansión · 7:00 pm · RSVP 315 438 3873" />
+    <title>Mis XV · Catalina Valencia Gutierrez</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Parisienne&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <main>
+
+      <!-- HERO — blush editorial, editorial cálido sin ambient stars, hard-offset shadow vibe -->
+      <section class="cover" aria-labelledby="hero-title">
+        <div class="cover-art" aria-hidden="true"></div>
+        <div class="cover-wash" aria-hidden="true"></div>
+        <div class="cover-copy">
+          <p class="eyebrow light">Con mucho amor te invito a celebrar</p>
+          <p class="small-title">Mis</p>
+          <h1 id="hero-title">XV</h1>
+          <p class="name">Catalina Valencia Gutierrez</p>
+          <p class="cover-date" aria-label={`${longDate}, 7 de la noche`}>
+            <span>{eventDay} {shortDate}</span>
+            <span class="date-dot" aria-hidden="true">·</span>
+            <span>{eventTime}</span>
+          </p>
+          <p class="cover-venue">La Gran Mansión · Santa Elena</p>
+          <a class="scroll-arrow" href="#historia" aria-label="Ver invitación">↓</a>
+        </div>
+      </section>
+
+      <!-- HISTORIA / INVITACIÓN — mensaje largo + padres -->
+      <section class="section story" id="historia" data-reveal>
+        <p class="eyebrow">Una nueva etapa</p>
+
+        <div class="invite-block">
+          <p class="invite-family">Con el amor de mis padres</p>
+          <p class="invite-parents">Desiy Gutierrez &amp; Eduardo Valencia</p>
+          <p class="invite-cta">te invitan a celebrar los quince años de</p>
+          <p class="invite-hero">Catalina</p>
+        </div>
+
+        <h2 class="story-heading">Quince años<br />marcan el comienzo<br /><em>de un sueño.</em></h2>
+
+        <div class="copy">
+          <p>
+            Quince años marcan el comienzo de una nueva etapa, un sueño que se hace realidad
+            y una noche que quedará guardada para siempre en mi corazón. Con inmensa alegría
+            quiero compartir contigo este momento tan especial, rodeada del amor de mi familia,
+            de mis amigos y de quienes han acompañado cada paso de mi camino.
+          </p>
+          <p>
+            Hoy, con ilusión y gratitud, te invito a ser parte de esta celebración que he
+            soñado con tanto cariño. Tu presencia hará que esta noche sea aún más inolvidable.
+          </p>
+          <p class="signature">Con cariño,<br /><strong>Catalina Valencia Gutierrez</strong></p>
+        </div>
+      </section>
+
+      <!-- FECHA — Sábado 10 de octubre de 2026 · 7pm America/Bogota -->
+      <section class="section event" data-reveal aria-labelledby="date-title">
+        <p class="eyebrow">Reserva la fecha</p>
+        <div class="event-card">
+          <div class="event-card-col">
+            <span class="label">Fecha</span>
+            <strong class="date-display">{eventDay}<br /><small>10 octubre 2026</small></strong>
+            <small class="date-hint">{longDate}</small>
+          </div>
+          <div class="event-card-col">
+            <span class="label">Recepción</span>
+            <strong class="time-display">7:00<br /><small>p. m.</small></strong>
+          </div>
+        </div>
+
+        <div class="countdown" role="timer" aria-live="polite" aria-label={`Cuenta regresiva para el ${longDate}`} data-countdown data-target={eventDate}>
+          <div><b data-days>00</b><span>días</span></div>
+          <div><b data-hours>00</b><span>horas</span></div>
+          <div><b data-minutes>00</b><span>minutos</span></div>
+          <div><b data-seconds>00</b><span>segundos</span></div>
+        </div>
+        <p class="countdown-note">Faltan <span data-countdown-label>—</span> para la gran noche. ¡Te esperamos!</p>
+        <p class="countdown-rsvp-hint">Confirma antes del <strong>15 de septiembre de 2026</strong></p>
+        <time datetime={eventDate} hidden>{longDate} · {eventTime}</time>
+      </section>
+
+      <!-- LUGAR — La Gran Mansión + Vía El Placer -->
+      <section class="section venue location-section" data-reveal aria-labelledby="venue-title">
+        <div class="location-map"><iframe title="Ubicación La Gran Mansion" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15926.24017104114!2d-76.2930662!3d3.6870646!3m2!1i1024!2i768!4f13.1!3m2!1m1!2sLa%20Mansion%2C%20El%20Cerrito%2C%20Valle%20del%20Cauca!5e0!3m2!1sen!2sco!4v1788403688910!5m2!1sen!2sco" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+        <div class="venue-copy">
+          <p class="eyebrow">El lugar</p>
+          <h2 id="venue-title">La Gran Mansión<br /><em>Centro de Eventos</em></h2>
+          <address>
+            Vía El Placer – Santa Elena, La Gran Mansion Centro de Eventos<br />
+            El Cerrito, Valle del Cauca
+          </address>
+          <a class="button" href="https://maps.app.goo.gl/9iTSachUDapF7PwX8" target="_blank" rel="noreferrer">Cómo llegar <span>↗</span></a>
+          <p class="venue-note">Recepción <strong>7:00 pm</strong> — Te esperamos puntual para disfrutar la noche desde el inicio.</p>
+        </div>
+      </section>
+
+      <!-- DETALLES — dress code + colores reservados + lluvia sobres -->
+      <section class="section details" data-reveal aria-labelledby="details-title">
+        <p class="eyebrow">Detalles de la noche</p>
+        <h2 id="details-title" class="details-title">Todo pensado<br /><em>para celebrar juntos.</em></h2>
+        <div class="detail-grid">
+          <article>
+            <span class="detail-symbol" aria-hidden="true">✦</span>
+            <h3>Código de<br /><em>vestimenta</em></h3>
+            <p><strong>Hombres:</strong> Formal — saco y corbata<br /><strong>Damas:</strong> Traje de gala</p>
+          </article>
+          <article>
+            <span class="detail-symbol" aria-hidden="true">◌</span>
+            <h3>Colores<br /><em>reservados</em></h3>
+            <p>Champagne, dorado y<br />toda la gama de rosados</p>
+            <div class="color-dots" aria-hidden="true">
+              <span style="background:#e5c39a" title="Champagne"></span>
+              <span style="background:#c9a84c" title="Dorado"></span>
+              <span style="background:#d9a4b0" title="Rosa dusty"></span>
+              <span style="background:#b87f8d" title="Rosa malva"></span>
+              <span style="background:#f7c6d0" title="Rosa claro"></span>
+            </div>
+          </article>
+          <article>
+            <span class="detail-symbol" aria-hidden="true">♡</span>
+            <h3>Mesa de<br /><em>regalos</em></h3>
+            <p><strong>Lluvia de sobres</strong><br />Tu presencia es el mejor regalo; si deseas obsequiar, será con mucho cariño.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- RSVP — WhatsApp + hashtag + canción -->
+      <section class="section rsvp" data-reveal aria-labelledby="rsvp-title">
+        <p class="eyebrow">Confirma tu asistencia</p>
+        <h2 id="rsvp-title">¿Nos<br /><em>acompañas?</em></h2>
+        <p>Por favor confirma antes del <strong>15 de septiembre de 2026</strong>.</p>
+        <div class="actions">
+          <a
+            class="button button-light rsvp-link"
+            href={`https://wa.me/${whatsappPhone}?text=${whatsappMessage}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Confirmar por WhatsApp ↗
+          </a>
+          <p class="phone">WhatsApp: 315 438 3873</p>
+        </div>
+        <div class="rsvp-meta">
+          <p class="hashtag-inline">{hashtag}</p>
+          <p class="music-hint"><span aria-hidden="true">♫</span> Canción sugerida: <strong>Once Upon a Dream</strong> — compártela si te inspira</p>
+        </div>
+      </section>
+
+      <!-- GALERÍA — placeholder elegante (sin fotos inventadas) -->
+      <section class="section gallery" data-reveal>
+        <p class="eyebrow">Recuerdos</p>
+        <h2 class="gallery-heading">Momentos que<br /><em>nos unen.</em></h2>
+        <div class="gallery-track" role="list">
+          {
+            [0, 1, 2, 3, 4, 5].map((i) => (
+              <div class="gallery-item is-placeholder" role="listitem" aria-hidden="true" data-symbol={["♡", "✦", "◇", "✿", "❋", "✧"][i]}>
+                <span class="gallery-placeholder-text">Foto {i + 1}</span>
+              </div>
+            ))
+          }
+        </div>
+        <p class="gallery-note">Galería reservada — agrega tus fotos favoritas en <code>/public/photos/</code> cuando estén listas.</p>
+      </section>
+
+      <!-- MÚSICA CARD -->
+      <div class="music-card" aria-label="Control de música" data-reveal>
+        <span class="music-note" aria-hidden="true">♫</span>
+        <div>
+          <p class="music-label">Música de fondo</p>
+          <strong>Once Upon a Dream</strong><small>Canción de la noche</small>
+        </div>
+        <button type="button" class="music-inline-btn" aria-pressed="false" aria-label="Reproducir música">▶</button>
+      </div>
+
+      <footer data-reveal>
+        <p class="hashtag">{hashtag} · Catalina XV</p>
+        <p class="footer-sub">♪ Once Upon a Dream — Toca ♪ para reproducir</p>
+        <p class="footer-name">Catalina Valencia Gutierrez · XV</p>
+        <small>Con amor, Desiy &amp; Eduardo</small>
+      </footer>
+
+      <audio id="bg-music" preload="none" loop src="/once-upon-a-dream.mp3"></audio>
+    </main>
+
+    <button class="music-fab" type="button" aria-pressed="false" aria-label="Reproducir música">
+      <span class="music-fab-icon" aria-hidden="true">♪</span><span class="music-fab-label">Música</span>
+    </button>
+
+    <script is:inline>
+      // Countdown activo — Sábado 10 de octubre de 2026 · 19:00 America/Bogota
+      const countdown = document.querySelector('[data-countdown]');
+      if (countdown && countdown.dataset.target) {
+        const target = new Date(countdown.dataset.target).getTime();
+        const label = document.querySelector('[data-countdown-label]');
+        const tick = () => {
+          const diff = Math.max(0, target - Date.now());
+          const values = [Math.floor(diff / 86400000), Math.floor(diff / 3600000) % 24, Math.floor(diff / 60000) % 60, Math.floor(diff / 1000) % 60];
+          ['days','hours','minutes','seconds'].forEach((key, i) => {
+            const el = document.querySelector(`[data-${key}]`);
+            if (el) el.textContent = String(values[i]).padStart(2, '0');
+          });
+          if (label) {
+            if (diff === 0) label.textContent = '¡Hoy es el gran día!';
+            else label.textContent = `${String(values[0]).padStart(2,'0')} días`;
+          }
+          if (diff === 0) countdown.setAttribute('aria-label', '¡Hoy es el gran día!');
+        };
+        tick(); setInterval(tick, 1000);
+      }
+
+      // reveals suaves — IntersectionObserver + prefers-reduced-motion
+      (() => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-visible'));
+          return;
+        }
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+          });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('[data-reveal]').forEach((el) => obs.observe(el));
+      })();
+    </script>
+
+    <script is:inline>
+      // FAB música — toggle visual + audio real si existe src
+      (() => {
+        const fab = document.querySelector('.music-fab');
+        const fabIcon = fab?.querySelector('.music-fab-icon');
+        const fabLabel = fab?.querySelector('.music-fab-label');
+        const inlineBtn = document.querySelector('.music-inline-btn');
+        const audio = document.getElementById('bg-music');
+        const setState = (playing) => {
+          fab?.setAttribute('aria-pressed', String(playing));
+          fab?.setAttribute('aria-label', playing ? 'Pausar música' : 'Reproducir música');
+          fab?.classList.toggle('is-playing', playing);
+          if (fabIcon) fabIcon.textContent = playing ? '❚❚' : '♪';
+          if (fabLabel) fabLabel.textContent = playing ? 'Pausar' : 'Música';
+          if (inlineBtn) {
+            inlineBtn.setAttribute('aria-pressed', String(playing));
+            inlineBtn.setAttribute('aria-label', playing ? 'Pausar música' : 'Reproducir música');
+            inlineBtn.textContent = playing ? '❚❚' : '▶';
+            inlineBtn.classList.toggle('is-playing', playing);
+          }
+        };
+        const toggle = async () => {
+          const isPlaying = fab?.classList.contains('is-playing');
+          if (!isPlaying && audio && audio.getAttribute('src')) {
+            try { await audio.play(); setState(true); } catch { setState(!isPlaying); }
+          } else if (isPlaying && audio && !audio.paused) {
+            audio.pause(); setState(false);
+          } else {
+            setState(!isPlaying);
+          }
+        };
+        fab?.addEventListener('click', toggle);
+        inlineBtn?.addEventListener('click', toggle);
+        if (audio) {
+          audio.addEventListener('ended', () => setState(false));
+          audio.addEventListener('pause', () => { if (!audio.ended) setState(false); });
+        }
+      })();
+    </script>
+  </body>
+</html>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Parisienne&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+  :root{
+    --rose-pale:#f7e4ea;--rose-dusty:#d9a4b0;--rose-malva:#b87f8d;--champagne:#e5c39a;--ivory:#f5eee9;--ink:#4a2d3a;
+    --rose:#b87f8d;--blush:#f7e4ea;--cream:#f5eee9;--gold:#e5c39a;--gold-deep:#b87f8d;
+    --serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif;
+    --shadow-hard:#ecd5c2;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 var(--sans)}
+  body::before{content:'';position:fixed;inset:0;pointer-events:none;opacity:.035;z-index:10;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+  main{overflow:hidden}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--rose-malva);outline-offset:3px}
+
+  /* COVER — pétalo rosado editorial */
+  .cover{min-height:100svh;position:relative;display:grid;place-items:end center;padding-bottom:7vh;text-align:center;color:#f5eee9;background:#b87f8d}
+  .cover-art{position:absolute;inset:0;background:linear-gradient(135deg,#b87f8d 0%,#d9a4b0 55%,#e5c39a 100%);filter:saturate(.92) brightness(1.02);opacity:.38}
+  .cover-wash{position:absolute;inset:0;background:linear-gradient(180deg,rgba(184,127,141,.18),rgba(74,45,58,.42));pointer-events:none}
+  .cover-copy{position:relative;z-index:1;width:min(92%,680px);padding:0 12px}
+  .eyebrow{margin:0;color:var(--rose-malva);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase}
+  .eyebrow.light{color:var(--champagne)}
+  .label{letter-spacing:.18em;text-transform:uppercase;font-size:.7rem;color:var(--rose-malva)}
+  .small-title{font:italic 1.6rem var(--serif);margin:4rem 0 0;color:#f5eee9}
+  .cover h1{font:clamp(10rem,35vw,19rem)/.8 var(--serif);font-weight:400;letter-spacing:-.08em;margin:.4rem 0;background:linear-gradient(110deg,#f5eee9 12%,#e5c39a 35%,#f5eee9 48%,#d9a4b0 62%,#f7e4ea 80%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:xv-shine 4.5s ease-in-out infinite}
+  @keyframes xv-shine{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+  .name{font:clamp(2.8rem,8vw,5.2rem)/1 'Parisienne',cursive;letter-spacing:.01em;margin:1.2rem 0 0;color:#fff7ef;text-shadow:0 2px 18px rgba(74,45,58,.55)}
+  .cover-date{margin:1.6rem 0 0;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.5rem;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:#f5eee9}
+  .date-placeholder{color:var(--champagne);font-weight:500;letter-spacing:.18em}
+  .date-dot{opacity:.7}
+  .cover-venue{margin:.45rem 0 0;color:rgba(245,238,233,.92);font:italic .82rem var(--serif);letter-spacing:.06em}
+  .scroll-arrow{display:inline-block;margin-top:4.5rem;color:var(--champagne);text-decoration:none;font:2rem/1 var(--serif);animation:float-arrow 2s ease-in-out infinite}
+  @keyframes float-arrow{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+  /* SECTIONS */
+  .section{padding:clamp(5rem,12vw,10rem) 24px;position:relative}
+  .section.story{background:var(--cream)}
+  .section.event{background:var(--rose-malva);color:#f5eee9}
+  .section.venue{background:var(--cream)}
+  .section.details{background:var(--rose-pale)}
+  .section.rsvp{background:var(--ink);color:#f5eee9}
+  .section.gallery{background:var(--cream)}
+
+  /* STORY */
+  .story{max-width:760px;margin:0 auto;text-align:center}
+  .story .eyebrow{color:var(--rose-malva)}
+  .invite-block{margin:2.2rem 0 2.8rem}
+  .invite-family{margin:0;color:var(--rose-malva);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500}
+  .invite-parents{margin:.35rem 0 0;font:italic 1.15rem var(--serif);color:var(--ink)}
+  .invite-cta{margin:.6rem 0 0;color:#8a6a6e;font-size:.92rem}
+  .invite-hero{margin:.35rem 0 0;font:clamp(3.2rem,10vw,5rem)/1 'Parisienne',cursive;color:var(--rose-malva)}
+  .story-heading{margin:1.2rem 0 1.8rem;font:clamp(2.4rem,6vw,3.6rem)/1.05 var(--serif);font-weight:400;letter-spacing:-.03em}
+  .story-heading em{font-style:italic;color:var(--rose-malva);font-weight:400}
+  .copy{max-width:620px;margin:0 auto;text-align:left;font-size:1.02rem;line-height:1.75;color:#5a3a4a}
+  .copy p{margin:0 0 1rem}
+  .signature{margin-top:1.8rem !important;text-align:center;font:italic 1.1rem var(--serif);color:var(--ink)}
+  .signature strong{font-family:'Parisienne',cursive;font-size:1.9rem;font-weight:400;color:var(--rose-malva)}
+
+  /* EVENT DATE CARD */
+  .event{max-width:760px;margin:0 auto;text-align:center}
+  .event .eyebrow{color:var(--champagne)}
+  .event-card{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:520px;margin:2.2rem auto 0}
+  .event-card-col{padding:22px 16px;background:#fff8f2;border:1px solid rgba(229,195,154,.55);box-shadow:10px 10px 0 var(--shadow-hard);color:var(--ink)}
+  .event-card-col .label{color:var(--rose-malva)}
+  .date-display{font:clamp(1.6rem,5vw,2.2rem)/1 var(--serif);font-weight:400;letter-spacing:-.02em;display:block;margin-top:.35rem}
+  .date-display.placeholder{color:var(--rose-malva);line-height:1.1}
+  .date-hint{color:#8a6a6e;font-size:.72rem;letter-spacing:.04em;display:block;margin-top:.35rem}
+  .time-display{font:clamp(1.6rem,5vw,2.2rem)/1 var(--serif);font-weight:400;display:block;margin-top:.35rem}
+  .time-display small{font-size:.75em;letter-spacing:.08em;text-transform:uppercase;color:#8a6a6e}
+  .countdown{display:flex;justify-content:center;gap:14px;margin-top:2.2rem;white-space:nowrap}
+  .countdown div{display:grid;gap:4px;justify-items:center;min-width:56px}
+  .countdown b{font:clamp(1.5rem,4vw,2rem)/1 var(--serif);font-weight:400;color:var(--champagne);font-variant-numeric:tabular-nums}
+  .countdown span{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,238,233,.85)}
+  .countdown--pending{opacity:.95}
+  .countdown--pending b{color:rgba(245,238,233,.92)}
+  .countdown-note{margin:1rem auto 0;max-width:520px;color:rgba(245,238,233,.82);font-size:.78rem}
+  .countdown-rsvp-hint{margin:.6rem 0 0;color:var(--champagne);font-size:.78rem;letter-spacing:.04em}
+
+  /* VENUE */
+  .venue{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;max-width:980px;margin:0 auto}
+  .venue-photo{position:relative;aspect-ratio:1.15;overflow:hidden;background:linear-gradient(135deg,#f7e4ea,#ecd5c2);border:1px solid rgba(184,127,141,.22)}
+  .location-map{position:relative;aspect-ratio:1.32;overflow:hidden;background:#f7e4ea;border:1px solid var(--gold);box-shadow:10px 10px 0 var(--shadow-hard)}
+  .location-map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;filter:saturate(1.08)}
+  .venue-photo-placeholder{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding:24px;color:var(--ink)}
+  .venue-placeholder-icon{font-size:2rem;color:var(--rose-malva)}
+  .venue-photo-placeholder p{margin:.6rem 0 0;font:italic 1.25rem var(--serif);line-height:1.2}
+  .venue-photo-placeholder small{font-family:var(--sans);font-style:normal;letter-spacing:.04em}
+  .venue-placeholder-addr{color:#8a6a6e;font-size:.78rem}
+  .venue-copy{text-align:left}
+  .venue-copy .eyebrow{color:var(--rose-malva)}
+  .venue-copy h2{margin:.4rem 0 .6rem;font:clamp(2rem,5vw,2.8rem)/1.05 var(--serif);font-weight:400;letter-spacing:-.02em}
+  .venue-copy h2 em{font-style:italic;color:var(--rose-malva);font-weight:400}
+  .venue-copy address{font:1.02rem/1.6 var(--sans);color:#5a3a4a;font-style:normal}
+  .venue-note{margin:1rem 0 0;color:#8a6a6e;font-size:.82rem}
+  .button{display:inline-flex;align-items:center;gap:.35em;min-height:44px;padding:12px 18px;background:var(--rose-malva);color:#fff;font:500 .78rem var(--sans);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:1px solid var(--rose-malva);margin-top:1rem;transition:background .2s, border-color .2s}
+  .button:hover,.button:focus-visible{background:#a86b7c;border-color:#a86b7c}
+  .button-light{background:var(--champagne);border-color:var(--champagne);color:var(--ink)}
+  .button-light:hover{background:#d9b48a;border-color:#d9b48a}
+
+  /* DETAILS */
+  .details{max-width:980px;margin:0 auto;text-align:center}
+  .details .eyebrow{color:var(--rose-malva)}
+  .details-title{margin:.4rem 0 1.2rem;font:clamp(2.2rem,6vw,3.2rem)/1.05 var(--serif);font-weight:400;letter-spacing:-.02em}
+  .details-title em{font-style:italic;color:var(--rose-malva);font-weight:400}
+  .detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:2.2rem}
+  .detail-grid article{padding:24px 16px;background:#fff;border:1px solid rgba(184,127,141,.18);box-shadow:10px 10px 0 var(--shadow-hard);min-height:210px}
+  .detail-symbol{color:var(--rose-malva);font-size:1.6rem;display:block}
+  .detail-grid h3{margin:.6rem 0 .5rem;font:1.15rem/1.1 var(--serif);font-weight:400}
+  .detail-grid h3 em{font-style:italic;color:var(--rose-malva);font-weight:400}
+  .detail-grid p{margin:0;color:#5a3a4a;font-size:.92rem;line-height:1.6}
+  .color-dots{margin-top:.8rem;display:flex;justify-content:center;gap:6px}
+  .color-dots span{width:18px;height:18px;border-radius:50%;border:1px solid rgba(0,0,0,.08);display:inline-block}
+
+  /* RSVP */
+  .rsvp{max-width:760px;margin:0 auto;text-align:center}
+  .rsvp .eyebrow{color:var(--champagne)}
+  .rsvp h2{margin:.4rem 0 .8rem;font:clamp(2.4rem,6vw,3.4rem)/1 var(--serif);font-weight:400}
+  .rsvp h2 em{font-style:italic;color:var(--champagne);font-weight:400}
+  .rsvp p{color:rgba(245,238,233,.92)}
+  .actions{margin-top:1.6rem}
+  .phone{margin:.8rem 0 0;color:var(--champagne);font-size:.82rem;letter-spacing:.08em}
+  .rsvp-meta{margin-top:2rem;display:grid;gap:.5rem}
+  .hashtag-inline{color:var(--champagne);font:italic 1.05rem var(--serif)}
+  .music-hint{color:rgba(245,238,233,.72);font-size:.78rem}
+  .music-hint strong{color:rgba(245,238,233,.95);font-weight:500}
+
+  /* GALLERY */
+  .gallery{max-width:980px;margin:0 auto;text-align:center}
+  .gallery .eyebrow{color:var(--rose-malva)}
+  .gallery-heading{margin:.4rem 0 1.2rem;font:clamp(2rem,5vw,2.8rem)/1.05 var(--serif);font-weight:400;letter-spacing:-.02em}
+  .gallery-heading em{font-style:italic;color:var(--rose-malva);font-weight:400}
+  .gallery-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 4px 12px;scrollbar-width:none}
+  .gallery-track::-webkit-scrollbar{display:none}
+  .gallery-item{flex:0 0 280px;aspect-ratio:1;scroll-snap-align:center;display:grid;place-items:center;background:#fff;border:1px solid rgba(184,127,141,.18);box-shadow:8px 8px 0 var(--shadow-hard);position:relative}
+  .gallery-item.is-placeholder{cursor:default}
+  .gallery-placeholder-text{font:.72rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:rgba(184,127,141,.85)}
+  .gallery-note{margin:1rem auto 0;max-width:36rem;color:#8a6a6e;font-size:.78rem}
+  .gallery-note code{background:#fff;border:1px solid rgba(229,195,154,.5);padding:.15rem .4rem;border-radius:6px;font-size:.75rem}
+
+  /* MUSIC CARD */
+  .music-card{display:flex;align-items:center;gap:18px;max-width:520px;margin:3rem auto 0;padding:20px;text-align:left;border:1px solid rgba(229,195,154,.6);background:#fff8f2;box-shadow:8px 8px 0 var(--shadow-hard);transform:rotate(-.3deg)}
+  .music-note{color:var(--rose-malva);font-size:2rem}
+  .music-card div{display:grid;gap:3px;flex:1}
+  .music-label,.music-card small{margin:0;color:#8a6a6e;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+  .music-card strong{font-family:var(--serif);font-size:1.1rem;font-weight:400}
+  .music-card button{width:44px;height:44px;border:1px solid rgba(229,195,154,.7);border-radius:50%;background:transparent;color:#8a6a6e;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+  .music-card button:hover,.music-card button:focus-visible{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+  .music-card button.is-playing{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+  .music-note-copy{color:#8a6a6e;font-size:.75rem}
+
+  /* FOOTER */
+  footer{padding:48px 24px;text-align:center;background:var(--ink);color:#f5eee9}
+  .hashtag{color:var(--champagne);font:italic 1.15rem var(--serif);margin:0}
+  .footer-sub{margin:.4rem 0 0;color:rgba(245,238,233,.72);font-size:.78rem}
+  .footer-name{margin:1rem 0 0;font:italic 1rem var(--serif);color:#f5eee9}
+  footer small{color:rgba(245,238,233,.62);font-size:.78rem}
+
+  /* FAB música */
+  .music-fab{position:fixed;right:1rem;bottom:1rem;z-index:20;display:flex;align-items:center;gap:.5rem;padding:.65rem .9rem;border:1px solid var(--gold);border-radius:999px;background:rgba(255,253,251,.92);color:var(--ink);font:500 .75rem var(--sans);letter-spacing:.08em;cursor:pointer;box-shadow:0 8px 20px rgba(74,45,58,.18);transition:background .2s,color .2s,border-color .2s}
+  .music-fab:hover,.music-fab:focus-visible{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+  .music-fab.is-playing{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+  .music-fab:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  .music-fab-icon{font:1rem var(--serif)}
+
+  /* REVEALS */
+  [data-reveal]{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+  [data-reveal].is-visible{opacity:1;transform:none}
+
+  /* RESPONSIVE — single 700px breakpoint */
+  @media(max-width:700px){
+    .cover{place-items:end center;padding-bottom:5vh}
+    .small-title{margin-top:2.5rem}
+    .cover h1{font-size:clamp(8rem,34vw,12rem)}
+    .name{font-size:clamp(2.4rem,9vw,3.8rem);margin-top:.8rem}
+    .cover-date{font-size:.74rem;gap:.4rem}
+    .scroll-arrow{margin-top:3rem}
+    .section{padding-block:5rem}
+    .event-card{grid-template-columns:1fr;gap:12px}
+    .event-card-col{box-shadow:8px 8px 0 var(--shadow-hard)}
+    .countdown{gap:8px}
+    .countdown div{min-width:48px}
+    .countdown b{font-size:clamp(1.2rem,6vw,1.6rem)}
+    .venue{grid-template-columns:1fr;gap:20px}
+    .venue-photo{aspect-ratio:1.2;order:2}
+    .location-map{aspect-ratio:1.32;order:2}
+    .venue-copy{order:1;text-align:center}
+    .venue-copy address{font-size:.95rem}
+    .detail-grid{grid-template-columns:1fr;gap:12px}
+    .detail-grid article{min-height:auto;box-shadow:8px 8px 0 var(--shadow-hard);transform:none}
+    .gallery-item{flex:0 0 72vw}
+    .music-card{transform:none;box-shadow:6px 6px 0 var(--shadow-hard)}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .cover h1{animation:none}
+    .scroll-arrow{animation:none}
+    [data-reveal]{transition:none;opacity:1;transform:none}
+  }
+</style>
+
+</html>
