@@ -1,0 +1,64 @@
+---
+const apiUrl = import.meta.env.PUBLIC_GUEST_ADMIN_URL || '';
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Administración · Catalina XV</title>
+  </head>
+  <body>
+    <main class="admin">
+      <a class="back" href="/">← Volver a la invitación</a>
+      <header><p>Invitaciones</p><h1>Administración <em>Catalina XV</em></h1><span>Sábado 3 de octubre de 2026 · 7:00 pm</span></header>
+      <section class="panel" id="gate">
+        <h2>Acceso privado</h2><p>Ingresa la clave para gestionar invitados y confirmaciones.</p>
+        <form id="gate-form"><input id="secret" type="password" placeholder="Clave de administrador" autocomplete="off" required /><button>Entrar</button></form>
+        <small id="gate-message" role="alert"></small>
+      </section>
+      <div id="dashboard" hidden>
+        <div class="toolbar"><strong>Panel activo</strong><button id="logout" class="muted">Cerrar sesión</button></div>
+        <section class="panel">
+          <h2>Crear invitados</h2><p>Una línea por invitado: <code>nombre; cupos; tratamiento</code>. Ejemplo: <code>María Pérez; 2; a</code>.</p>
+          <textarea id="lines" rows="5" placeholder="María Pérez; 2&#10;Juan Gómez; 1; d"></textarea><button id="create">Crear invitados</button><small id="create-message"></small>
+        </section>
+        <section class="panel"><div class="list-head"><h2>Invitados <span id="count">0</span></h2><input id="search" type="search" placeholder="Buscar…" /></div><div class="table-wrap"><table><thead><tr><th>Nombre</th><th>Cupos</th><th>Estado</th><th>Link</th><th></th></tr></thead><tbody id="guests"></tbody></table></div><small id="list-message"></small></section>
+      </div>
+    </main>
+    <script define:vars={{ apiUrl }}>
+      const key = 'catalina_xv_admin_secret';
+      const $ = (s) => document.querySelector(s);
+      let secret = sessionStorage.getItem(key) || '';
+      let guests = [];
+      const message = (el, text, error = false) => { el.textContent = text; el.className = error ? 'error' : 'success'; };
+      const api = async (action, payload = {}) => {
+        if (!apiUrl) throw new Error('Falta PUBLIC_GUEST_ADMIN_URL en el entorno.');
+        const res = await fetch(apiUrl, { method: 'POST', headers: {'Content-Type':'application/json','x-admin-secret':secret}, body: JSON.stringify({ action, slug: 'catalina-xv', ...payload }) });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(body.error || `Respuesta ${res.status}`);
+        return body;
+      };
+      const unwrap = (data) => Array.isArray(data) ? data : (data.guests || data.data || []);
+      const link = (token) => `${location.origin}/?invitacion=${encodeURIComponent(token)}`;
+      const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+      const render = () => {
+        const q = $('#search').value.toLowerCase(); const rows = guests.filter((g) => `${g.name} ${g.status}`.toLowerCase().includes(q));
+        $('#count').textContent = q ? `${rows.length}/${guests.length}` : guests.length;
+        $('#guests').innerHTML = rows.map((g) => `<tr><td>${esc(g.name)}</td><td>${g.cupos ?? 1}</td><td><span class="badge ${esc(g.status)}">${({confirmed:'Confirmado',declined:'No asistirá',pending:'Pendiente'}[g.status] || 'Pendiente')}</span></td><td><button class="copy" data-token="${esc(g.token)}">Copiar</button></td><td><button class="status" data-id="${esc(g.id)}" data-status="confirmed">✓</button><button class="status decline" data-id="${esc(g.id)}" data-status="declined">×</button><button class="status pending" data-id="${esc(g.id)}" data-status="pending">•</button></td></tr>`).join('');
+      };
+      const load = async () => { guests = unwrap(await api('list')); render(); };
+      const open = async () => { $('#gate').hidden = true; $('#dashboard').hidden = false; try { await load(); } catch (e) { message($('#list-message'), e.message, true); } };
+      $('#gate-form').addEventListener('submit', async (e) => { e.preventDefault(); secret = $('#secret').value.trim(); if (!secret) return; sessionStorage.setItem(key, secret); try { await open(); } catch (e) { message($('#gate-message'), e.message, true); } });
+      $('#logout').addEventListener('click', () => { sessionStorage.removeItem(key); location.reload(); });
+      $('#search').addEventListener('input', render);
+      $('#create').addEventListener('click', async () => { const raw = $('#lines').value.trim(); if (!raw) return message($('#create-message'), 'Escribe al menos un invitado.', true); try { const result = await api('mint', { lines: raw }); $('#lines').value = ''; message($('#create-message'), `${(result.created || []).length} invitado(s) creado(s).`); await load(); } catch (e) { message($('#create-message'), e.message, true); } });
+      $('#guests').addEventListener('click', async (e) => { const b = e.target.closest('button'); if (!b) return; if (b.className === 'copy') { await navigator.clipboard.writeText(link(b.dataset.token)); message($('#list-message'), 'Link copiado.'); return; } try { await api('set_status', { id: b.dataset.id, status: b.dataset.status }); await load(); } catch (err) { message($('#list-message'), err.message, true); } });
+      if (secret) { $('#secret').value = secret; void open(); }
+    </script>
+  </body>
+</html>
+<style is:global>
+  :root{--ink:#4a2d3a;--rose:#b87f8d;--blush:#f7e4ea;--cream:#f5eee9;--gold:#e5c39a;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',Arial,sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font:15px/1.6 var(--sans)}.admin{max-width:900px;margin:auto;padding:3rem 1.2rem 6rem}.back{color:var(--rose);text-decoration:none}.admin header{margin:3rem 0 2rem}.admin header p{margin:0;color:var(--rose);letter-spacing:.18em;text-transform:uppercase;font-size:.7rem}.admin h1{font:400 clamp(2.5rem,8vw,4.5rem)/1 var(--serif);margin:.3rem 0}.admin h1 em{color:var(--rose)}.admin header span{color:#765d64}.panel{background:#fffdfb;border:1px solid #dfc7bd;padding:1.5rem;margin-top:1.4rem;box-shadow:9px 9px 0 var(--blush)}.panel h2{font:400 1.55rem var(--serif);margin:0 0 .4rem}.panel p{color:#765d64}.panel input,.panel textarea{width:100%;padding:.8rem;border:1px solid #dfc7bd;background:#fff;color:var(--ink);font:inherit;margin:.4rem 0 .8rem}.panel button{padding:.75rem 1rem;border:1px solid var(--rose);background:var(--rose);color:#fff;cursor:pointer;font:500 .75rem var(--sans);letter-spacing:.06em;text-transform:uppercase}.panel form{display:flex;gap:.6rem}.panel form input{margin:0;flex:1}.toolbar,.list-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.5rem}.toolbar .muted,.copy,.status{background:transparent;color:var(--rose);border-color:#dfc7bd}.list-head input{max-width:260px;padding:.7rem;border:1px solid #dfc7bd;font:inherit}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;margin-top:.8rem}th,td{text-align:left;padding:.7rem .4rem;border-bottom:1px solid #efddd8}th{font-size:.68rem;text-transform:uppercase;color:#765d64}.badge{padding:.2rem .5rem;border-radius:99px;font-size:.7rem}.badge.confirmed{background:#e2efe6;color:#4d7c5f}.badge.declined{background:#f0e2e6;color:#8a6470}.badge.pending{background:#f5ead6;color:#a97c3f}td button{margin:.15rem;padding:.45rem .55rem}.decline{color:#a03a4e!important}.pending{color:#a97c3f!important}small{display:block;margin-top:.7rem;color:#765d64}.error{color:#a03a4e!important}.success{color:#4d7c5f!important}code{background:var(--blush);padding:.1rem .3rem}@media(max-width:620px){.panel form{display:block}.panel form button{width:100%;margin-top:.5rem}.toolbar,.list-head{align-items:stretch;flex-direction:column}.list-head input{max-width:none}table,thead,tbody,tr,td{display:block}thead{display:none}tr{padding:.6rem 0;border-bottom:1px solid #efddd8}td{display:flex;justify-content:space-between;gap:.5rem;padding:.35rem 0;border:0}td:before{content:attr(data-label);color:#765d64}}
+</style>
